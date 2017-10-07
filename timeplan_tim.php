@@ -86,17 +86,26 @@
                     <div class="form-group">
                         <h2 class="mb-sm">INSTALASI FIBER OPTIK</h2>
                         <div class="col-sm-5">
-                            <input type="hidden" class="form-control" id="survey" value="">
+                            <input type="hidden" class="form-control" id="produk" value="">
                         </div>
                     </div>
 
                     <!-- Input Activity -->
                     <div class="col-md-9">
+                        <!-- Pelanggan -->
+                        <div class="form-group">
+                            <label for="pelanggan" class="col-sm-2">Pelanggan</label>
+                            <div class="col-sm-5">
+                                <input type="number" class="form-control" id="pelanggan" value="">
+                            </div>
+                        </div>
+
                         <!-- Survey -->
                         <div class="form-group">
-                            <label for="survey" class="col-sm-2">Survey</label>
+                            <label for="survey" class="col-sm-2">Survey</label></label>
                             <div class="col-sm-5">
                                 <input type="number" class="form-control" id="survey">
+                                <input type="file" class="form-control" id="survey_file">
                             </div>
                             hari
                         </div>
@@ -106,6 +115,7 @@
                             <label for="perizinan" class="col-sm-2">Perizinan</label>
                             <div class="col-sm-5">
                                 <input type="number" class="form-control" id="perizinan">
+                                <input type="file" class="form-control" id="perizinan_file">
                             </div>
                             hari
                         </div>
@@ -115,6 +125,7 @@
                             <label for="pengadaan" class="col-sm-2">Pengadaan Material</label>
                             <div class="col-sm-5">
                                 <input type="number" class="form-control" id="pengadaan">
+                                <input type="file" class="form-control" id="pengadaan_file">
                             </div>
                             hari
                         </div>
@@ -124,6 +135,7 @@
                             <label for="installasi" class="col-sm-2">Installasi</label>
                             <div class="col-sm-5">
                                 <input type="number" class="form-control" id="installasi">
+                                <input type="file" class="form-control" id="installasi_file">
                             </div>
                             hari
                         </div>
@@ -133,6 +145,7 @@
                             <label for="atp" class="col-sm-2">Uji Terima (ATP)</label>
                             <div class="col-sm-5">
                                 <input type="number" class="form-control" id="atp">
+                                <input type="file" class="form-control" id="atp_file">
                             </div>
                             hari
                         </div>
