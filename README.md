@@ -4,3 +4,6 @@ Aplikasi ini dibuat untuk memudahkan admin memasukkan hari dalam mengerjakan pro
 Versi 1.0.0
 - Mengatur UI untuk memulai menambahkan form input
 - Membuat agar header dan footer tidak perlu di copy di semua file
+Additional
+- Menambah timeplan_tim
+- Menambah form login
