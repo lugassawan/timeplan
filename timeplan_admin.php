@@ -1,5 +1,8 @@
 <?php 
+	session_start();
 	include("main/header.php"); 
+    include("inc/koneksi.php"); 
+    include("akses/akses_admin.php");
 ?>
 
 <div role="main" class="main">
@@ -12,15 +15,15 @@
 
                     <ul class="nav nav-list mb-xlg sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
                         <li data-option-value="*" class="active"><a href="#">Overview</a></li>
-                        <li data-option-value=".fiber"><a href="#">INSTALASI FIBER OPTIK</a></li>
-                        <li data-option-value=".route"><a href="#">DESIGN & ROUTE FIBER OPTIK</a></li>
-                        <li data-option-value=".radio"><a href="#">INSTALASI RADIO LINK</a></li>
-                        <li data-option-value=".bwa"><a href="#">INSTALASI BWA</a></li>
-                        <li data-option-value=".vsat"><a href="#">INSTALASI VSAT</a></li>
-                        <li data-option-value=".modul"><a href="#">INSTALASI & INTEGRASI MODUL</a></li>
-                        <li data-option-value=".bts"><a href="#">INSTALASI BTS</a></li>
-                        <li data-option-value=".tower"><a href="#">INSTALASI TOWER</a></li>
-                        <li data-option-value=".service"><a href="#">MANAGE SERVICE FIBER OPTIK</a></li>
+                        <li data-option-value=".fiber"><a href="menu_act.php?menu=1">INSTALASI FIBER OPTIK</a></li>
+                        <li data-option-value=".route"><a href="menu_act.php?menu=2">DESIGN & ROUTE FIBER OPTIK</a></li>
+                        <li data-option-value=".radio"><a href="menu_act.php?menu=3">INSTALASI RADIO LINK</a></li>
+                        <li data-option-value=".bwa"><a href="menu_act.php?menu=4">INSTALASI BWA</a></li>
+                        <li data-option-value=".vsat"><a href="menu_act.php?menu=5">INSTALASI VSAT</a></li>
+                        <li data-option-value=".modul"><a href="menu_act.php?menu=6">INSTALASI & INTEGRASI MODUL</a></li>
+                        <li data-option-value=".bts"><a href="menu_act.php?menu=7">INSTALASI BTS</a></li>
+                        <li data-option-value=".tower"><a href="menu_act.php?menu=8">INSTALASI TOWER</a></li>
+                        <li data-option-value=".service"><a href="menu_act.php?menu=9">MANAGE SERVICE FIBER OPTIK</a></li>
                         <li data-option-value=".tools"><a href="#">TOOLS</a></li>
                     </ul>
 
@@ -81,61 +84,39 @@
             </div>
             <!-- Ruang untuk input data -->
             <div class="col-md-9">
-                <form class="form-horizontal" action="" method="POST">
+                <form class="form-horizontal" action="act_admin.php?id=<?php echo $_SESSION['id_menu']; ?>&user=<?php echo $_SESSION['id_user']; ?>" method="POST">
                     <!-- Nama Produk -->
                     <div class="form-group">
-                        <h2 class="mb-sm">INSTALASI FIBER OPTIK</h2>
+                        <h2 class="mb-sm"><?php echo $_SESSION['nm_menu']; ?></h2>
                         <div class="col-sm-5">
-                            <input type="hidden" class="form-control" id="survey" value="">
+                            <input type="hidden" class="form-control" name="<?php echo $_SESSION['name_menu']; ?>" value="<?php echo $_SESSION['id_menu']; ?>">
                         </div>
                     </div>
 
                     <!-- Input Activity -->
                     <div class="col-md-9">
-                        <!-- Survey -->
+                    <?php
+                        //Looping untuk menemukan activity yang sesuai menu
+                        $activity_length = $_SESSION['activity_length'];
+                        for($i=0;$i<$activity_length;$i++){
+                            $activity[$i] = $_SESSION['activity'][$i];
+                            $activitys = mysqli_query($conn,"select * from activity where id_activity='$activity[$i]'");
+                            $ractivitys = mysqli_fetch_array($activitys);
+                            
+                    ?>
+                        <!-- <?php echo $ractivitys['nm_activity']; ?> -->
                         <div class="form-group">
-                            <label for="survey" class="col-sm-2">Survey</label>
+                            <label for="<?php echo $ractivitys['nm_activity']; ?>" class="col-sm-2"><?php echo $ractivitys['nm_activity']; ?></label>
                             <div class="col-sm-5">
-                                <input type="number" class="form-control" id="survey">
+                                <input type="hidden" class="form-control" name="<?php echo "nm_" . $ractivitys['nm_activity']; ?>" value="<?php echo $ractivitys['nm_activity']; ?>">
+                                <input type="number" class="form-control" name="<?php echo "waktu_" . $ractivitys['nm_activity']; ?>">
                             </div>
                             hari
                         </div>
-
-                        <!-- Perizinan -->
-                        <div class="form-group">
-                            <label for="perizinan" class="col-sm-2">Perizinan</label>
-                            <div class="col-sm-5">
-                                <input type="number" class="form-control" id="perizinan">
-                            </div>
-                            hari
-                        </div>
-
-                        <!-- Pengadaan Material -->
-                        <div class="form-group">
-                            <label for="pengadaan" class="col-sm-2">Pengadaan Material</label>
-                            <div class="col-sm-5">
-                                <input type="number" class="form-control" id="pengadaan">
-                            </div>
-                            hari
-                        </div>
-
-                        <!-- Installasi -->
-                        <div class="form-group">
-                            <label for="installasi" class="col-sm-2">Installasi</label>
-                            <div class="col-sm-5">
-                                <input type="number" class="form-control" id="installasi">
-                            </div>
-                            hari
-                        </div>
-
-                        <!-- Uji Terima ATP -->
-                        <div class="form-group">
-                            <label for="atp" class="col-sm-2">Uji Terima (ATP)</label>
-                            <div class="col-sm-5">
-                                <input type="number" class="form-control" id="atp">
-                            </div>
-                            hari
-                        </div>
+                    
+                    <?php
+                        }
+                    ?>
 
                         <div class="form-group">
                             <div class="col-sm-offset-3">

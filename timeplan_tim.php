@@ -1,5 +1,8 @@
 <?php 
-	include("main/header.php"); 
+	session_start();
+    include("main/header.php"); 
+    include("inc/koneksi.php");
+    include("akses/akses_tim.php"); 
 ?>
 
 <div role="main" class="main">
@@ -96,7 +99,7 @@
                         <div class="form-group">
                             <label for="pelanggan" class="col-sm-2">Pelanggan</label>
                             <div class="col-sm-5">
-                                <input type="number" class="form-control" id="pelanggan" value="">
+                                <input type="number" class="form-control" name="pelanggan" value="">
                             </div>
                         </div>
 

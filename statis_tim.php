@@ -1,5 +1,8 @@
 <?php 
-	include("main/header.php"); 
+	session_start();
+    include("main/header.php"); 
+    include("inc/koneksi.php");
+    include("akses/akses_tim.php"); 
 ?>
 
 <div role="main" class="main">

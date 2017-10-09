@@ -1,5 +1,8 @@
 <?php 
+	session_start();
 	include("main/header.php"); 
+    include("inc/koneksi.php"); 
+    include("akses/akses_admin.php"); 
 ?>
 
 <div role="main" class="main">

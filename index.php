@@ -8,7 +8,7 @@
 
 			<div class="featured-box featured-box-primary featured-box-flat featured-box-text-left mt-md">
 				<div class="box-content">
-					<form action="#">
+					<form action="login_act.php" method="POST">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-content">
@@ -26,12 +26,12 @@
 									<p>If you have an account with us, please log in.</p>
 									<div class="form-group">
 										<label class="font-weight-normal">Username <span class="required">*</span></label>
-										<input type="text" class="form-control" required>
+										<input type="text" class="form-control" name="username" required>
 								    </div>
 
 								    <div class="form-group">
 										<label class="font-weight-normal">Password <span class="required">*</span></label>
-										<input type="password" class="form-control" required>
+										<input type="password" class="form-control" name="password" required>
 									</div>
 
 									<p class="required">* Required Fields</p>

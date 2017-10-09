@@ -107,9 +107,17 @@
 														</a>
                                                 </li>
                                                 <li class="dropdown">
-                                                    <a class="dropdown-toggle" href="#">
-															Contact Us
-														</a>
+                                                    <a class="dropdown-toggle" href=
+                                                        <?php
+                                                            if (empty($_SESSION['user']) AND empty($_SESSION['pass'])){
+                                                            ?>"index.php">Login
+                                                            <?php
+                                                        }else{
+                                                            ?>"logout_act.php">Logout
+                                                            <?php
+                                                        }	
+                                                        ?>
+													</a>
                                                 </li>
                                             </ul>
                                         </nav>
