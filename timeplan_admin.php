@@ -14,7 +14,7 @@
                 <aside class="sidebar">
 
                     <ul class="nav nav-list mb-xlg sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-                        <li data-option-value="*" class="active"><a href="#">Overview</a></li>
+                        <li data-option-value="*" class="active"><a href="overview.php">Overview</a></li>
                         <li data-option-value=".fiber"><a href="menu_act.php?menu=1">INSTALASI FIBER OPTIK</a></li>
                         <li data-option-value=".route"><a href="menu_act.php?menu=2">DESIGN & ROUTE FIBER OPTIK</a></li>
                         <li data-option-value=".radio"><a href="menu_act.php?menu=3">INSTALASI RADIO LINK</a></li>
@@ -102,14 +102,19 @@
                             $activity[$i] = $_SESSION['activity'][$i];
                             $activitys = mysqli_query($conn,"select * from activity where id_activity='$activity[$i]'");
                             $ractivitys = mysqli_fetch_array($activitys);
+
+                            //Mengambil kata awal di setiap activity
+                            $kt_acti = $ractivitys['nm_activity'];
+                            $jumlah = "1";
+                            $hasil_acti = implode(" ", array_slice(explode(" ", $kt_acti), 0, $jumlah));
                             
                     ?>
                         <!-- <?php echo $ractivitys['nm_activity']; ?> -->
                         <div class="form-group">
                             <label for="<?php echo $ractivitys['nm_activity']; ?>" class="col-sm-2"><?php echo $ractivitys['nm_activity']; ?></label>
                             <div class="col-sm-5">
-                                <input type="hidden" class="form-control" name="<?php echo "nm_" . $ractivitys['nm_activity']; ?>" value="<?php echo $ractivitys['nm_activity']; ?>">
-                                <input type="number" class="form-control" name="<?php echo "waktu_" . $ractivitys['nm_activity']; ?>">
+                                <input type="hidden" class="form-control" name="<?php echo "nm_" . $hasil_acti; ?>" value="<?php echo $ractivitys['nm_activity']; ?>">
+                                <input type="number" class="form-control" name="<?php echo "waktu_" . $hasil_acti; ?>">
                             </div>
                             hari
                         </div>

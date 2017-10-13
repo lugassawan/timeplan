@@ -10,28 +10,37 @@ $cek = mysqli_num_rows($login);
 
 //Apabila username dan password benar
 if ($cek>0){
-    if($r["role"] == "admin"){
-        session_start(); //mulai sesi
-                
-        //Isi dari sesi
-        $_SESSION["id_user"]=$r["id_user"];
-        $_SESSION["role"]=$r["role"];
-        $_SESSION["user"]=$r["username"];
-        $_SESSION["pass"]=$r["password"];
-        header('location:timeplan_admin.php');
-                
-    }else{
-        if($r["role"] == "tim"){
-            session_start(); //mulai sesi
+    session_start(); //mulai sesi
+    
+    //Isi dari sesi
+    $_SESSION["id_user"]=$r["id_user"];
+    $_SESSION["role"]=$r["role"];
+    $_SESSION["user"]=$r["username"];
+    $_SESSION["pass"]=$r["password"];
+    header('location:overview.php');
 
-            //Isi dari sesi
-            $_SESSION["id_user"]=$r["id_user"];
-            $_SESSION["role"]=$r["role"];
-            $_SESSION["user"]=$r["username"];
-            $_SESSION["pass"]=$r["password"];
-            header('location:timeplan_tim.php');
-        }
-    }
+    // if($r["role"] == "admin"){
+    //     session_start(); //mulai sesi
+                
+    //     //Isi dari sesi
+    //     $_SESSION["id_user"]=$r["id_user"];
+    //     $_SESSION["role"]=$r["role"];
+    //     $_SESSION["user"]=$r["username"];
+    //     $_SESSION["pass"]=$r["password"];
+    //     header('location:timeplan_admin.php');
+                
+    // }else{
+    //     if($r["role"] == "tim"){
+    //         session_start(); //mulai sesi
+
+    //         //Isi dari sesi
+    //         $_SESSION["id_user"]=$r["id_user"];
+    //         $_SESSION["role"]=$r["role"];
+    //         $_SESSION["user"]=$r["username"];
+    //         $_SESSION["pass"]=$r["password"];
+    //         header('location:timeplan_tim.php');
+    //     }
+    // }
 } else {
     header('location:index.php');
 }

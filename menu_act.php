@@ -32,18 +32,17 @@ if ($cekmenu>0){
     $_SESSION['id_menu'] = $rmenus['id_produk'];
     $_SESSION['nm_menu'] = $rmenus['nm_produk'];
     $_SESSION['name_menu'] = $name_menu;
-
-    //SESSION untuk activity sesuai menu
     $_SESSION['activity_length'] = $activity_length;
 
-    header('location:timeplan_admin.php');
-    // if($_SESSION['role'] == "admin"){
-    //     header('location:timeplan_admin.php');
-    // }else{
-    //     if($_SESSION['role'] == "tim"){
-    //         header('location:timeplan_tim.php');
-    //     }
-    // }
+    if($_SESSION['role'] == "admin"){
+        header('location:timeplan_admin.php');
+    }else{
+        if($_SESSION['role'] == "tim"){
+            header('location:timeplan_tim.php');
+        }else{
+            header('location:index.php');
+        }
+    }
 }else{
     echo '<script language="javascript">alert("Halaman tidak ditemukan!"); history.go(-1);</script>';
 }
