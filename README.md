@@ -15,3 +15,12 @@ v2
 - Looping di halaman yang dibuat dapat berjalan sesuai keinginan
 - Membuat halaman overview untuk tampilan setelah login
 - Untuk menu menuju halaman input hanya akan ada di overview dan timeplan untuk admin dan tim. Untuk halaman statis, link menu agar dimatikan.
+
+v3
+- Membuat timeplan dan statis tim bekerja sesuai keinginan
+- Menampilkan data chart untuk tim
+- Menampilkan data untuk chart atau statis menggunakan sistem query pada mysql
+- Total hari setiap activity dapat muncul sesuai activity
+- Pengembangan sudah selesai, tinggal kalau mau dilanjutkan bisa saja
+- Untuk tabel produk2, act_test belum di ganti ke produk dan act_tim
+- Masih ada file uji.php, test.php untuk menguji coding
