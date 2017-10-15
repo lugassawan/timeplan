@@ -139,15 +139,26 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Activity', 'Day'],
-          <?php
-             //Looping untuk menemukan activity yang sesuai menu
-             $chart_act = mysqli_query($conn,"select * from act_admin where id_produk='$id_menus'");
-             while($rchart = mysqli_fetch_array($chart_act)){
-          ?>
-                ['<?php echo $rchart['nm_activity']; ?>',     <?php echo $rchart['waktu_activity']; ?>],
-          <?php  
-             }
-          ?>
+        <?php
+            //Cek role user
+            if($_SESSION['role'] == "admin"){
+                $chart_act = mysqli_query($conn,"select * from act_admin where id_produk='$id_menus'");
+                //Looping untuk menemukan activity yang sesuai menu dan admin
+                while($rchart = mysqli_fetch_array($chart_act)){
+        ?>
+                   ['<?php echo $rchart['nm_activity']; ?>',     <?php echo $rchart['waktu_activity']; ?>],
+        <?php  
+               }
+            }else{
+                 //Ambil data nm_activity dan total hari tiap activity
+                 $activs = mysqli_query($conn,"SELECT DISTINCT nm_activity, sum(if(id_produk='$id_menus' AND id_pelanggan='$id_pelanggan', waktu_activity, 0)) as waktu_activity FROM act_test WHERE id_produk='$id_menus' AND id_pelanggan='$id_pelanggan' GROUP by nm_activity DESC");
+                 while($ractivs = mysqli_fetch_array($activs)){
+        ?>
+                        ['<?php echo $ractivs['nm_activity']; ?>',     <?php echo $ractivs['waktu_activity']; ?>],
+        <?php  
+                }
+            }
+        ?>
         ]);
 
         var options = {

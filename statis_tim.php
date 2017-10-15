@@ -85,68 +85,42 @@
 
             <div class="col-md-9">
                 <!-- Nama Produk -->
+                <?php
+                    // SQL untuk menu
+                    $id_menus = $_SESSION['id_produk'];
+                    $menus = mysqli_query($conn,"select * from produk2 where id_produk='$id_menus'");
+                    $rmenus = mysqli_fetch_array($menus);
+
+                ?>
                 <div class="form-group">
-                    <h2 class="mb-sm">INSTALASI FIBER OPTIK</h2>
-                    <div class="col-sm-5">
-                        <input type="hidden" class="form-control" id="produk" value="">
-                    </div>
+                    <h2 class="mb-sm"><?php echo $rmenus['nm_produk']; ?></h2>
                 </div>
 
                 <!-- Input Activity -->
                 <div class="col-md-6">
-                    <!-- Survey -->
+                <?php
+                    $id_pelanggan = $_SESSION['id_pelanggan'];
+                    //Ambil data nm_activity dan total hari tiap activity
+                    $activ = mysqli_query($conn,"SELECT DISTINCT nm_activity, sum(if(id_produk='$id_menus' AND id_pelanggan='$id_pelanggan', waktu_activity, 0)) as waktu_activity FROM act_test WHERE id_produk='$id_menus' AND id_pelanggan='$id_pelanggan' GROUP by nm_activity DESC");
+                    while($ractiv = mysqli_fetch_array($activ)){
+                ?>
+                    <!-- <?php echo $ractiv['nm_activity'] ?> -->
                     <div class="form-group">
-                        <label class="col-sm-6 form-control-static">Survey</label>
+                        <label class="col-sm-6 form-control-static"><?php echo $ractiv['nm_activity']; ?></label>
                         <label class="col-sm-1 form-control-static control-label">:</label>
                         <div class="col-sm-3">
-                            <p class="form-control-static">100 hari</p>
+                            <p class="form-control-static"><?php echo $ractiv['waktu_activity']; ?> hari</p>
                         </div>
                     </div>
-
-                    <!-- Perizinan -->
-                    <div class="form-group">
-                        <label class="col-sm-6 form-control-static">Perizinan</label>
-                        <label class="col-sm-1 form-control-static control-label">:</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static">100 hari</p>
-                        </div>
-                    </div>
-
-                    <!-- Pengadaan -->
-                    <div class="form-group">
-                        <label class="col-sm-6 form-control-static">Pengadaan Material</label>
-                        <label class="col-sm-1 form-control-static control-label">:</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static">100 hari</p>
-                        </div>
-                    </div>
-
-                    <!-- Installasi -->
-                    <div class="form-group">
-                        <label class="col-sm-6 form-control-static">Installasi</label>
-                        <label class="col-sm-1 form-control-static control-label">:</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static">100 hari</p>
-                        </div>
-                    </div>
-                    
-                    <!-- ATP -->
-                    <div class="form-group">
-                        <label class="col-sm-6 form-control-static">Uji Terima (ATP)</label>
-                        <label class="col-sm-1 form-control-static control-label">:</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static">100 hari</p>
-                        </div>
-                    </div>
-
+                
+                <?php 
+                    }
+                ?>
                 </div>
                 <!-- !Input Activity -->
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="heading heading-border heading-bottom-double-border">
-                            <h4>Diagram Activity</h4>
-						</div>
-                        <div id="piechart-placeholder"></div>    
+                        <div id="piechart" style="width: 550px; height: 350px;"></div>
                     </div>
                     <!-- /.col -->
                 </div>
