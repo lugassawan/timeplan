@@ -93,43 +93,54 @@
                         </div>
                     </div>
 
-                    <!-- Input Activity -->
-                    <div class="col-md-9">
-                    <?php
-                        //Looping untuk menemukan activity yang sesuai menu
-                        $activity_length = $_SESSION['activity_length'];
-                        for($i=0;$i<$activity_length;$i++){
-                            $activity[$i] = $_SESSION['activity'][$i];
-                            $activitys = mysqli_query($conn,"select * from activity where id_activity='$activity[$i]'");
-                            $ractivitys = mysqli_fetch_array($activitys);
+                    <div class="col-md-12">
+                        <!-- Input Activity -->
+                        <div class="col-md-6">
+                        <?php
+                            $id_menuss = $_SESSION['id_menu'];
+                            //Looping untuk menemukan activity yang sesuai menu
+                            $activity_length = $_SESSION['activity_length'];
+                            for($i=0;$i<$activity_length;$i++){
+                                $activity[$i] = $_SESSION['activity'][$i];
+                                $activitys = mysqli_query($conn,"select * from activity where id_activity='$activity[$i]'");
+                                $ractivitys = mysqli_fetch_array($activitys);
 
-                            //Mengambil kata awal di setiap activity
-                            $kt_acti = $ractivitys['nm_activity'];
-                            $jumlah = "1";
-                            $hasil_acti = implode(" ", array_slice(explode(" ", $kt_acti), 0, $jumlah));
-                            
-                    ?>
-                        <!-- <?php echo $ractivitys['nm_activity']; ?> -->
-                        <div class="form-group">
-                            <label for="<?php echo $ractivitys['nm_activity']; ?>" class="col-sm-2"><?php echo $ractivitys['nm_activity']; ?></label>
-                            <div class="col-sm-5">
-                                <input type="hidden" class="form-control" name="<?php echo "nm_" . $hasil_acti; ?>" value="<?php echo $ractivitys['nm_activity']; ?>">
-                                <input type="number" class="form-control" name="<?php echo "waktu_" . $hasil_acti; ?>">
+                                //Mengambil kata awal di setiap activity
+                                $kt_acti = $ractivitys['nm_activity'];
+                                $jumlah = "1";
+                                $hasil_acti = implode(" ", array_slice(explode(" ", $kt_acti), 0, $jumlah));
+                                
+                        ?>
+                            <!-- <?php echo $ractivitys['nm_activity']; ?> -->
+                            <div class="form-group">
+                                <label for="<?php echo $ractivitys['nm_activity']; ?>" class="col-sm-3"><?php echo $ractivitys['nm_activity']; ?></label>
+                                <div class="col-sm-7">
+                                    <input type="hidden" class="form-control" name="<?php echo "nm_" . $hasil_acti; ?>" value="<?php echo $ractivitys['nm_activity']; ?>">
+                                    <input type="number" class="form-control" name="<?php echo "waktu_" . $hasil_acti; ?>">
+                                </div>
+                                hari
                             </div>
-                            hari
+                        
+                        <?php
+                            }
+                        ?>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-4">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>
                         </div>
+                        <!-- !Input Activity -->
+                        
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div id="piechart" style="width: 550px; height: 350px;"></div>
+                            </div>
+                        </div>
+
+                    </div>
                     
-                    <?php
-                        }
-                    ?>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-3">
-                                <button class="btn btn-primary" type="submit">Submit</button>
-                            </div>
-                        </div>
-                    </div><!-- !Input Activity -->
-
                     
                 </form>
                 <div style="clear:both">

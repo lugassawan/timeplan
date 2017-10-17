@@ -93,51 +93,78 @@
                         </div>
                     </div>
 
-                    <!-- Input Activity -->
-                    <div class="col-md-9">
-                        <!-- Pelanggan -->
-                        <div class="form-group">
-                            <label for="pelanggan" class="col-sm-2">Pelanggan</label>
-                            <div class="col-sm-5">
-                                <input type="number" class="form-control" name="pelanggan">
-                            </div>
-                        </div>
-
-                        <?php
-                            //Looping untuk menemukan activity yang sesuai menu
-                            $activity_length = $_SESSION['activity_length'];
-                            for($i=0;$i<$activity_length;$i++){
-                                $activity[$i] = $_SESSION['activity'][$i];
-                                $activitys = mysqli_query($conn,"select * from activity where id_activity='$activity[$i]'");
-                                $ractivitys = mysqli_fetch_array($activitys);
-
-                                //Mengambil kata awal di setiap activity
-                                $kt_acti = $ractivitys['nm_activity'];
-                                $jumlah = "1";
-                                $hasil_acti = implode(" ", array_slice(explode(" ", $kt_acti), 0, $jumlah));
-                                
-                        ?>
-                            <!-- <?php echo $ractivitys['nm_activity']; ?> -->
+                    <div class="col-md-12">
+                        <!-- Input Activity -->
+                        <div class="col-md-6">
+                            <!-- Pelanggan -->
                             <div class="form-group">
-                                <label for="<?php echo $ractivitys['nm_activity']; ?>" class="col-sm-2"><?php echo $ractivitys['nm_activity']; ?></label>
-                                <div class="col-sm-5">
-                                    <input type="hidden" class="form-control" name="<?php echo "nm_" . $hasil_acti; ?>" value="<?php echo $ractivitys['nm_activity']; ?>">
-                                    <input type="number" class="form-control" name="<?php echo "waktu_" . $hasil_acti; ?>">
-                                    <input type="file" class="form-control" name="<?php echo $hasil_acti . "_file" . $i; ?>">
+                                <label for="pelanggan" class="col-sm-3">Pelanggan</label>
+                                <div class="col-sm-7">
+                                <?php
+                                    if(!empty($_GET)){
+                                ?>
+                                        <input type="number" class="form-control" name="pelanggan" id="pelanggan" onchange="idpelanggan()" value="<?php echo $_GET['pelanggan'] ?>">
+                                <?php
+                                    }else{
+                                ?>
+                                        <input type="number" class="form-control" name="pelanggan" id="pelanggan" onchange="idpelanggan()">
+                                <?php
+                                    }
+                                ?>
                                 </div>
-                                hari
                             </div>
-                        
-                        <?php
-                            }
-                        ?>
 
-                        <div class="form-group">
-                            <div class="col-sm-offset-3">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                            <?php
+                                $id_menus = $_SESSION['id_menu'];
+                                //Mendapatkan ID dari GET
+                                if(!empty($_GET)){
+                                    $id_pelanggan = $_GET['pelanggan'];
+                                }else{
+                                    $id_pelanggan = 'KOSONG';
+                                }
+                                //Looping untuk menemukan activity yang sesuai menu
+                                $activity_length = $_SESSION['activity_length'];
+                                for($i=0;$i<$activity_length;$i++){
+                                    $activity[$i] = $_SESSION['activity'][$i];
+                                    $activitys = mysqli_query($conn,"select * from activity where id_activity='$activity[$i]'");
+                                    $ractivitys = mysqli_fetch_array($activitys);
+
+                                    //Mengambil kata awal di setiap activity
+                                    $kt_acti = $ractivitys['nm_activity'];
+                                    $jumlah = "1";
+                                    $hasil_acti = implode(" ", array_slice(explode(" ", $kt_acti), 0, $jumlah));
+                                    
+                            ?>
+                                <!-- <?php echo $ractivitys['nm_activity']; ?> -->
+                                <div class="form-group">
+                                    <label for="<?php echo $ractivitys['nm_activity']; ?>" class="col-sm-3"><?php echo $ractivitys['nm_activity']; ?></label>
+                                    <div class="col-sm-7">
+                                        <input type="hidden" class="form-control" name="<?php echo "nm_" . $hasil_acti; ?>" value="<?php echo $ractivitys['nm_activity']; ?>">
+                                        <input type="number" class="form-control" name="<?php echo "waktu_" . $hasil_acti; ?>">
+                                        <input type="file" class="form-control" name="<?php echo $hasil_acti . "_file" . $i; ?>">
+                                    </div>
+                                    hari
+                                </div>
+                            
+                            <?php
+                                }
+                            ?>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-4">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>                        
+                        </div>
+                        <!-- !Input Activity -->
+                        
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div id="piechart" style="width: 550px; height: 350px;"></div>
                             </div>
                         </div>
-                    </div><!-- !Input Activity -->
+                        
+                    </div>
 
                     
                 </form>
