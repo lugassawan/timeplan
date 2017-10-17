@@ -24,3 +24,7 @@ v3
 - Pengembangan sudah selesai, tinggal kalau mau dilanjutkan bisa saja
 - Untuk tabel produk2, act_test belum di ganti ke produk dan act_tim
 - Masih ada file uji.php, test.php untuk menguji coding
+
+v4
+- Mengubah tampilan statis admin seperti tim
+- Menambahkan chart ke timeplan admin dan tim

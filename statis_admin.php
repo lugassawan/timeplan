@@ -100,7 +100,7 @@
                 <div class="col-md-6">
                 <?php
                     //Looping untuk menemukan activity yang sesuai menu
-                    $activitys = mysqli_query($conn,"select * from act_admin where id_produk='$id_menus'");
+                    $activitys = mysqli_query($conn,"SELECT DISTINCT nm_activity, sum(if(id_produk='$id_menus', waktu_activity, 0)) as waktu_activity FROM act_admin WHERE id_produk='$id_menus' GROUP by nm_activity DESC");
                     while($ractivitys = mysqli_fetch_array($activitys)){
                             
                 ?>

@@ -130,6 +130,14 @@
 		 -->
 
 <!-- inline scripts related to this page -->
+<!-- Script Load ID Pelanggan -->
+<script type="text/javascript">
+function idpelanggan() {
+    var id = document.getElementById("pelanggan").value;
+    window.location.href = "?pelanggan=" + id;
+}
+</script>
+<!-- ./Script Load ID Pelanggan -->
 <!-- Pie Chart Activity -->
 <script type="text/javascript">
      google.charts.load('current', {'packages':['corechart']});
@@ -142,7 +150,7 @@
         <?php
             //Cek role user
             if($_SESSION['role'] == "admin"){
-                $chart_act = mysqli_query($conn,"select * from act_admin where id_produk='$id_menus'");
+                $chart_act = mysqli_query($conn,"SELECT DISTINCT nm_activity, sum(if(id_produk='$id_menus', waktu_activity, 0)) as waktu_activity FROM act_admin WHERE id_produk='$id_menus' GROUP by nm_activity DESC");
                 //Looping untuk menemukan activity yang sesuai menu dan admin
                 while($rchart = mysqli_fetch_array($chart_act)){
         ?>

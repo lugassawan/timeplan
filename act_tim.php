@@ -118,15 +118,6 @@
 
                 $id_user[$j] = $_GET['user'];
 
-                //Untuk mengambil activity
-                $actv = mysqli_query($conn,"select nm_activity from act_test where id_produk='$id_produk[$j]' AND id_pelanggan='$id_pelanggan[$j]' group by nm_activity ORDER BY nm_activity DESC");
-                $b = 0;
-                while($racv = mysqli_fetch_array($actv)){
-                    $_SESSION['nm_acts'][$b] = $racv['nm_activity'];
-                    $b++;
-                }
-                $_SESSION['b_len'] =$b;
-
                 // SQL untuk input waktu activity admin
                 $act_tim = mysqli_multi_query($conn,"insert into act_test values(NULL,'$nm_act[$j]','$waktu_act[$j]','','$waktu_input[$j]','$id_produk[$j]','$url_file[$j]','$id_pelanggan[$j]','$urutan[$j]','$id_user[$j]')");
                 if ($act_tim) {
