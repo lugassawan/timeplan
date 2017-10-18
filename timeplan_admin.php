@@ -97,7 +97,7 @@
                         <!-- Input Activity -->
                         <div class="col-md-6">
                         <?php
-                            $id_menuss = $_SESSION['id_menu'];
+                            $id_menus = $_SESSION['id_menu'];
                             //Looping untuk menemukan activity yang sesuai menu
                             $activity_length = $_SESSION['activity_length'];
                             for($i=0;$i<$activity_length;$i++){
