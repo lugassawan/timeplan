@@ -17,7 +17,7 @@
 								</div>
 
 								<div class="form-action clearfix">
-									<a href="demo-shop-1-register.html" class="btn btn-primary">Create an Account</a>
+									<a href="register.php" class="btn btn-primary">Create an Account</a>
 								</div>
 							</div>
 							<div class="col-sm-6">
