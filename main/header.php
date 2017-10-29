@@ -69,51 +69,27 @@
                                     <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
 											<i class="fa fa-bars"></i>
 										</button>
-                                    <ul class="header-social-icons social-icons hidden-xs">
-                                        <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                    </ul>
                                     <div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 collapse">
                                         <nav>
                                             <ul class="nav nav-pills" id="mainNav">
                                                 <li class="dropdown">
-                                                    <a class="dropdown-toggle" href="index.html">
+                                                    <a href="index.html">
 															Home
 														</a>
                                                 </li>
-                                                <li class="">
+                                                <li class="dropdwon">
                                                     <a href="demos.html">
 															Demos
 														</a>
                                                 </li>
-                                                <li class="dropdown dropdown-mega">
-                                                    <a class="dropdown-toggle" href="#">
-															Shortcodes
-														</a>
-                                                </li>
                                                 <li class="dropdown">
-                                                    <a class="dropdown-toggle" href="#">
-															Features
-														</a>
-                                                </li>
-                                                <li class="dropdown">
-                                                    <a class="dropdown-toggle" href="#">
-															Pages
-														</a>
-                                                </li>
-                                                <li class="dropdown active">
-                                                    <a class="dropdown-toggle" href="#">
-															Portfolio
-														</a>
-                                                </li>
-                                                <li class="dropdown">
-                                                    <a class="dropdown-toggle" href=
+                                                    <a href=
                                                         <?php
                                                             if (empty($_SESSION['user']) AND empty($_SESSION['pass'])){
                                                             ?>"index.php">Login
                                                             <?php
                                                         }else{
-                                                            ?>"logout_act.php">Logout
+                                                            ?>"logout">Logout
                                                             <?php
                                                         }	
                                                         ?>

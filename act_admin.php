@@ -1,12 +1,16 @@
 <?php
     include("inc/koneksi.php");
+    require_once('functions.php');
 
     //Mengatur waktu sesuai timezone
     date_default_timezone_set('Asia/Jakarta');
 
+    //Filter input
+    $data_get = filter_submittedform($_GET);
+
     //Memanggil activity yg sesuai menu
-    $id_menu = $_GET['id'];
-    $id_user = $_GET['user'];
+    $id_menu = $data_get['id'];
+    $id_user = $data_get['user'];
 
     // SQL untuk menu
     $produks = mysqli_query($conn,"select * from produk2 where id_produk='$id_menu'");
@@ -62,13 +66,13 @@
             $nm_act[$j] = $_POST[$nm_acti[$j]];
             $waktu_act[$j] = $_POST[$wkt_acti[$j]];
             $waktu_input[$j] = date("Y-m-d H:i:s");
-            $id_produk[$j] = $_GET['id'];
-            $id_user[$j] = $_GET['user'];
+            $id_produk[$j] = $data_get['id'];
+            $id_user[$j] = $data_get['user'];
             
             // SQL untuk input waktu activity admin
             $act_admin = mysqli_multi_query($conn,"insert into act_admin values(NULL,'$nm_act[$j]','$waktu_act[$j]','','$waktu_input[$j]','$id_produk[$j]','$id_user[$j]')");
             if ($act_admin) {
-                header('location:statis_admin.php');
+                header('location:statis_admin');
             } else {
                 echo "Error: " . $act_admin . "<br>" . mysqli_error($conn);
             }

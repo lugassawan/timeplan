@@ -1,7 +1,9 @@
 <?php 
 include("inc/koneksi.php");
+require_once('functions.php');
 
-$menu = $_GET['menu'];
+$data_get = filter_submittedform($_GET);
+$menu = $data_get['menu'];
 
 // SQL untuk menu
 $menus = mysqli_query($conn,"select * from produk2 where id_produk='$menu'");
@@ -35,12 +37,16 @@ if ($cekmenu>0){
     $_SESSION['activity_length'] = $activity_length;
 
     if($_SESSION['role'] == "admin"){
-        header('location:timeplan_admin.php');
+        header('location:timeplan_admin');
     }else{
         if($_SESSION['role'] == "tim"){
-            header('location:timeplan_tim.php');
+            header('location:timeplan_tim');
         }else{
-            header('location:index.php');
+            if($_SESSION['role'] == "customers"){
+                header('location:customers');
+            }else{
+                header('location:overview');
+            }
         }
     }
 }else{
