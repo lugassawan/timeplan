@@ -1,8 +1,8 @@
 <?php 
 	session_start();
-	include("main/header.php"); 
-    include("inc/koneksi.php"); 
-    include("akses/akses_admin.php"); 
+    include("main/header.php"); 
+    include("inc/koneksi.php");
+    include("akses/akses_user.php"); 
 ?>
 
 <div role="main" class="main">
@@ -36,7 +36,7 @@
                 <!-- Nama Produk -->
                 <?php
                     // SQL untuk menu
-                    $id_menus = $_SESSION['id_produk'];
+                    $id_menus = $_SESSION['id_menu'];
                     $menus = mysqli_query($conn,"select * from produk2 where id_produk='$id_menus'");
                     $rmenus = mysqli_fetch_array($menus);
 

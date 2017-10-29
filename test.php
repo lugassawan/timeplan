@@ -152,4 +152,75 @@
     while($rtote = mysqli_fetch_array($tote) AND $ractiv = mysqli_fetch_array($activ)){
         echo $ractiv['nm_activity'] . ": " . $rtote['waktu_activity'] . "</br>";
     }
+
+    //Create admin and tim  password secure
+    function hash_password($pass){
+        $salt = 'somethingrandom';
+        $hash = hash('sha512', $salt . $pass);
+        return $hash;
+    }
+    $pass = 'tim12345';
+    $hash = hash_password($pass);
+    echo $hash . "</br>";
+
+     //Fungsi filter input
+     function strfilter($input){
+        $input=trim($input);
+        $input=strip_tags($input);
+        $input=nl2br($input);
+        $input=addslashes($input);
+        $input=stripslashes($input);
+        $input=str_ireplace("'", "%", $input);
+        $input=str_ireplace( "''", '%', $input );
+        $input=str_ireplace( '""', '%', $input );
+        $query = preg_replace( '|(?<!%)%s|', "'%s'", $input );
+        $input=htmlentities($input, ENT_QUOTES);
+        $input=ltrim($input);
+        $input=rtrim($input);
+        return $input;
+    }
+
+    //Fungsi filter $_POST atau $_GET ( filter banyak input sekaligus)
+    function filter_submittedform($submitted_forms){
+        $array = array();
+        foreach(array_keys($submitted_forms) as $forms){
+            $array[$forms] = strfilter($submitted_forms[$forms]);
+        }
+        return $array;
+    }
+    
+    $email = 'coba@co.com';
+    $emai = strfilter($email);
+    echo $emai;
+
+    echo "</br></br>==================================================</br></br>";
 ?>
+
+<form method="POST" action="" enctype="multipart/form-data">
+<input type="text" name="name">
+<input type="file" name="files">
+<button type="submit">Submit</buttton>
+</br>
+</form>
+<?php
+    $data_post = filter_submittedform($_POST);
+    //$na = $_POST['name'];
+    //echo $na . "</br>===</br>";
+    $an = $data_post['name'];
+    echo $an . "</br>";
+    if(!empty($_FILES['files']['name'])){
+        echo "ADA FILE</br>";
+        $type = $_FILES['files']['type'];
+        var_dump($_FILES);
+        // type pdf ==> application/pdf
+        if($type == 'image/png' || $type == 'image/jpg' || $type == 'image/jpeg' || $type == 'image/gif'){
+            echo "</br>HASIL SUBMIT</br>";
+            $files = $_FILES['files']['name'];
+            echo $files . "</br>====</br>";
+            $fil = strfilter($files);
+            echo $fil . "</br>";
+            echo $type;
+        }
+    }
+?>
+

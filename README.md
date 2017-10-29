@@ -28,3 +28,10 @@ v3
 v4
 - Mengubah tampilan statis admin seperti tim
 - Menambahkan chart ke timeplan admin dan tim
+
+v5
+- Menambahkan registrasi dan view diagram chart untuk customers
+- Delete some unused file
+- Add security to form on server side
+- Add filter to form
+- Add session timeout auto logout
