@@ -23,7 +23,7 @@
         "php": ">=5.0.0"
     },
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "*",
+        "phpdocumentor/phpdocumentor": "2.9.1",
         "phpunit/phpunit": "8.4.3"
     },
     "suggest": {
