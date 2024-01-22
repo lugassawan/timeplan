@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "phpdocumentor/phpdocumentor": "*",
-        "phpunit/phpunit": "8.4.3"
+        "phpunit/phpunit": "10.5.9"
     },
     "suggest": {
         "league/oauth2-google": "Needed for Google XOAUTH2 authentication"
